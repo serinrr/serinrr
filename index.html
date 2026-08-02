@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CaN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coze自动进入小程序 - 书签脚本</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #C8102E;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #C8102E;
+            margin-top: 30px;
+        }
+        .step {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #C8102E;
+        }
+        .bookmark-link {
+            display: inline-block;
+            background: #C8102E;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            cursor: move;
+        }
+        .bookmark-link:hover {
+            background: #a00d24;
+        }
+        .code-block {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.4;
+            word-break: break-all;
+        }
+        .warning {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        .success {
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+            margin: 20px 0;
+        }
+        .copy-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 5px 0;
+        }
+        .copy-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Coze自动进入小程序 - 书签脚本</h1>
+
+        <div class="success">
+            ✅ <strong>最简单的方法</strong>：拖拽下面的按钮到浏览器书签栏，然后在预览页面点击书签即可自动进入！
+        </div>
+
+        <h2>方法一：拖拽书签（推荐）</h2>
+
+        <div class="step">
+            <h3>步骤1：拖拽按钮到书签栏</h3>
+            <p>将下面的按钮拖拽到浏览器的书签栏：</p>
+            <br>
+
+            <!-- 书签按钮 -->
+            <a class="bookmark-link"
+               href="javascript:(function(){var e=document.querySelectorAll('button, [role=&quot;button&quot;]');for(var i=0;i<e.length;i++){var t=(e[i].textContent||e[i].innerText||'').trim();if(t.includes('预览')||t.includes('进入')||t.includes('Preview')||t.includes('Enter')){e[i].click();alert('✅ 已自动进入小程序！');return}}alert('❌ 未找到按钮，请手动点击');})();"
+               onclick="return false;">
+                📌 自动进入小程序
+            </a>
+
+            <p><small>💡 提示：直接拖拽这个按钮到浏览器书签栏</small></p>
+        </div>
+
+        <div class="step">
+            <h3>步骤2：使用书签</h3>
+            <ol>
+                <li>访问预览链接：<a href="https://code.coze.cn/p/7668196533422014499/preview" target="_blank">https://code.coze.cn/p/7668196533422014499/preview</a></li>
+                <li>等待页面加载完成（约2-3秒）</li>
+                <li>点击刚才保存的书签</li>
+                <li>自动点击进入按钮！</li>
+            </ol>
+        </div>
+
+        <h2>方法二：手动添加书签</h2>
+
+        <div class="step">
+            <h3>步骤1：创建新书签</h3>
+            <ol>
+                <li>在浏览器中按 <kbd>Ctrl</kbd>+<kbd>D</kbd>（Mac: <kbd>Cmd</kbd>+<kbd>D</kbd>）</li>
+                <li>名称输入：<code>自动进入小程序</code></li>
+                <li>URL输入：复制下面的代码</li>
+            </ol>
+
+            <button class="copy-btn" onclick="copyCode()">📋 复制代码</button>
+
+            <div class="code-block" id="bookmarkCode">
+javascript:(function(){var e=document.querySelectorAll('button, [role=&quot;button&quot;]');for(var i=0;i<e.length;i++){var t=(e[i].textContent||e[i].innerText||'').trim();if(t.includes('预览')||t.includes('进入')||t.includes('Preview')||t.includes('Enter')){e[i].click();alert('✅ 已自动进入小程序！');return}}alert('❌ 未找到按钮，请手动点击');})();
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>步骤2：使用书签</h3>
+            <ol>
+                <li>访问预览链接</li>
+                <li>等待页面加载完成</li>
+                <li>点击刚才保存的书签</li>
+            </ol>
+        </div>
+
+        <h2>方法三：控制台脚本</h2>
+
+        <div class="step">
+            <h3>步骤1：打开控制台</h3>
+            <ol>
+                <li>在预览页面按 <kbd>F12</kbd> 打开开发者工具</li>
+                <li>切换到 "Console" 标签</li>
+                <li>粘贴并执行下面的代码：</li>
+            </ol>
+
+            <button class="copy-btn" onclick="copyConsoleCode()">📋 复制控制台代码</button>
+
+            <div class="code-block">
+(function() {
+    var buttons = document.querySelectorAll('button, [role="button"]');
+    for (var i = 0; i < buttons.length; i++) {
+        var text = (buttons[i].textContent || buttons[i].innerText || '').trim();
+        if (text.includes('预览') || text.includes('进入') || text.includes('Preview') || text.includes('Enter')) {
+            buttons[i].click();
+            console.log('✅ 已自动进入小程序！');
+            return;
+        }
+    }
+    console.log('❌ 未找到按钮');
+})();
+            </div>
+        </div>
+
+        <div class="warning">
+            ⚠️ <strong>注意</strong>：
+            <ul>
+                <li>书签脚本只能在预览页面上使用</li>
+                <li>确保在页面完全加载后点击书签</li>
+                <li>如果自动点击失败，可能需要手动点击</li>
+            </ul>
+        </div>
+
+        <h2>故障排查</h2>
+
+        <div class="step">
+            <h3>如果脚本不起作用：</h3>
+            <ol>
+                <li><strong>检查页面是否加载完成</strong>：等待几秒后再点击书签</li>
+                <li><strong>检查按钮文本</strong>：可能需要修改脚本中的关键词</li>
+                <li><strong>查看控制台</strong>：按F12查看是否有错误信息</li>
+                <li><strong>手动点击</strong>：最可靠的方法还是手动点击按钮</li>
+            </ol>
+        </div>
+
+        <h2>其他方案</h2>
+
+        <div class="step">
+            <h3>更多自动化方案：</h3>
+            <ul>
+                <li><strong>Tampermonkey脚本</strong>：查看 <code>auto-enter.user.js</code></li>
+                <li><strong>Python自动化</strong>：查看 <code>auto-enter-miniapp.py</code></li>
+                <li><strong>完整指南</strong>：查看 <code>AUTO_ENTER_GUIDE.md</code></li>
+            </ul>
+        </div>
+
+        <div class="success">
+            ✅ <strong>推荐</strong>：使用<strong>方法一</strong>的拖拽书签最简单快捷！
+        </div>
+
+        <hr>
+
+        <p style="text-align: center; color: #666;">
+            📝 创建时间：2024年<br>
+            🎯 目标链接：<a href="https://code.coze.cn/p/7668196533422014499/preview" target="_blank">预览页面</a>
+        </p>
+    </div>
+
+    <script>
+        function copyCode() {
+            const code = document.getElementById('bookmarkCode').textContent;
+            navigator.clipboard.writeText(code).then(function() {
+                alert('✅ 已复制到剪贴板！\n\n现在可以在浏览器中创建新书签，将这段代码粘贴到URL栏。');
+            }, function(err) {
+                console.error('复制失败:', err);
+                alert('❌ 复制失败，请手动复制代码');
+            });
+        }
+
+        function copyConsoleCode() {
+            const code = `(function() {
+    var buttons = document.querySelectorAll('button, [role="button"]');
+    for (var i = 0; i < buttons.length; i++) {
+        var text = (buttons[i].textContent || buttons[i].innerText || '').trim();
+        if (text.includes('预览') || text.includes('进入') || text.includes('Preview') || text.includes('Enter')) {
+            buttons[i].click();
+            console.log('✅ 已自动进入小程序！');
+            return;
+        }
+    }
+    console.log('❌ 未找到按钮');
+})();`;
+            navigator.clipboard.writeText(code).then(function() {
+                alert('✅ 已复制到剪贴板！\n\n现在可以在浏览器控制台中粘贴并执行。');
+            }, function(err) {
+                console.error('复制失败:', err);
+                alert('❌ 复制失败，请手动复制代码');
+            });
+        }
+    </script>
+</body>
+</html>
